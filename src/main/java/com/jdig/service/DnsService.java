@@ -1,4 +1,4 @@
-package com.jdig;
+package com.jdig.service;
 
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -54,7 +54,7 @@ public class DnsService {
 	 * @param recursion This property is used to specify that recursion is allowed on DNS queries. 
 	 */
 	public DnsService(String dnsProvider, Long timeout, Long retries, Boolean authoritative, Boolean recursion) {
-		this.dnsProviders = new String[] { dnsProvider };
+		this.dnsProviders = dnsProviders != null ? new String[] { dnsProvider } : null;
 		this.timeout = timeout;
 		this.retries = retries;
 		this.authoritative = authoritative;
@@ -64,7 +64,7 @@ public class DnsService {
 	 * @param dnsProvider Specifies the host name and port of the DNS server, e.g.: 8.8.8.8:53
 	 */
 	public DnsService(String dnsProvider) {
-		dnsProviders = new String[] { dnsProvider };
+		dnsProviders = dnsProviders != null ? new String[] { dnsProvider } : null;
 	}
 
 	private List<DnsEntry> defaultLookup(InitialDirContext context, String url, Type... types) throws NamingException {
