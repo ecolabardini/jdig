@@ -63,5 +63,16 @@ public class DnsParser {
 		String name = stk.nextToken();
 		return new DnsEntry(Type.SRV, name, priority, weight, port);
 	}
+	
+	public static String getReverseIpAddress(String ipAddress) {
+		String[] sIpAddress = ipAddress.split("\\.");
+		if (sIpAddress.length != 4) return null;
+		StringBuilder reverseIpAddress = new StringBuilder();
+		for (int i = sIpAddress.length - 1; i >= 0; i--) {
+			reverseIpAddress.append(sIpAddress[i]);
+			if (i>0) reverseIpAddress.append(".");
+		}
+		return reverseIpAddress.toString();
+	}
 
 }

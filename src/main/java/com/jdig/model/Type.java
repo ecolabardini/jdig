@@ -1,6 +1,7 @@
 package com.jdig.model;
 
 public enum Type {
+	
 	A,
     NS,
     MX,
@@ -8,7 +9,7 @@ public enum Type {
     TXT,
     CNAME;
     
-    public static Type[] all() {
+    public static Type[] any() {
 		return Type.values();
 	}
 }

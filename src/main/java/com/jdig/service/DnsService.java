@@ -1,5 +1,6 @@
 package com.jdig.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
@@ -108,8 +109,42 @@ public class DnsService {
 		}
 	}
 	
+	/**
+	 * Do a resource lookup of the specified type
+	 * @param domain the name of the resource record that is to be looked up
+	 * @param type indicates what type of query is required — ANY, A, NS, MX, SPF, SRV, TXT or CNAME
+	 * @return {@link List} of {@link DnsEntry}
+	 * @throws NamingException
+	 */
 	public List<DnsEntry> lookup(String domain, Type... type) throws NamingException {
 		return defaultLookup(getInitialDirContext(), domain, type);
+	}
+	
+	/**
+	 * Check if the IP address is blacklisted by any of the lists
+	 * @param ipAddress the ipAddress to be looked up
+	 * @param lists DNSBL lists, e.g. bl.spamcop.net, dnsbl.sorbs.net
+	 * @return {@link List} of {@link DnsEntry}
+	 * @throws NamingException
+	 */
+	public List<DnsEntry> blacklistLookup(String ipAddress, List<String> lists) throws NamingException {
+		return blacklistLookup(ipAddress, lists.toArray(new String[lists.size()]));
+	}
+	
+	/**
+	 * Check if the IP address is blacklisted by any of the lists
+	 * @param ipAddress the ipAddress which to be looked up
+	 * @param lists DNSBL lists, e.g. bl.spamcop.net, dnsbl.sorbs.net
+	 * @return {@link List} of {@link DnsEntry}
+	 * @throws NamingException
+	 */
+	public List<DnsEntry> blacklistLookup(String ipAddress, String ... lists) throws NamingException {
+		List<DnsEntry> entries = new ArrayList<DnsEntry>();
+		for (String list : lists) {
+			String query = DnsParser.getReverseIpAddress(ipAddress) + "." + list;
+			entries.addAll(defaultLookup(getInitialDirContext(), query, Type.any()));
+		}
+		return entries;
 	}
 
 }

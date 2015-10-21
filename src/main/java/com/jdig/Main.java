@@ -33,7 +33,7 @@ public class Main {
 			
 			if (line.hasOption("type")) {
 				String value = line.getOptionValue("type");
-				if (value.equals("ANY")) types = Type.all();
+				if (value.equals("ANY")) types = Type.any();
 				else {
 					try { types = new Type[] { Type.valueOf(value) }; } 
 					catch (Exception e) { throw new ParseException("Unrecognized option: --type=" + line.getOptionValue("type"));};

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -46,15 +47,22 @@ public class DnsServiceTest {
         assertEquals(expectedEntries, lookupEntries);
 	}
 	
-	@Test
-	public void shouldDigAtGithubAuthoritativeServer() throws NamingException {
-		List<DnsEntry> lookupEntries = new DnsService("ns1.p16.dynect.net.", null, null, true, null).lookup("github.com", Type.MX);
-		assertTrue(lookupEntries.size() > 0);
-	}
-
 	@Test(expected=NamingException.class)
 	public void shouldThrowExceptionWhenQueryingOnNonAuthoritativeServer() throws NamingException {
 		new DnsService("8.8.8.8", null, null, true, null).lookup("google.com", Type.MX);
+	}
+	
+	@Test
+	public void shouldDoBlacklistLookupByArray() throws NamingException {
+		List<DnsEntry> blacklistLookup = new DnsService().blacklistLookup("127.0.0.2", "bl.spamcop.net", "dnsbl.sorbs.net");
+		assertTrue(blacklistLookup.size() > 0);
+	}
+
+	@Test
+	public void shouldDoBlacklistLookupByList() throws NamingException {
+		List<String> myDnsBLlists = Arrays.asList("bl.spamcop.net", "dnsbl.sorbs.net");
+		List<DnsEntry> blacklistLookup = new DnsService().blacklistLookup("127.0.0.2", myDnsBLlists);
+		assertTrue(blacklistLookup.size() > 1);
 	}
 
 }
