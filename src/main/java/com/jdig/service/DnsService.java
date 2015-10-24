@@ -32,8 +32,20 @@ public class DnsService {
 	private Properties environment;
 	
 	public DnsService() { }
+	
+	/**
+	 * Constructs a DnsService with the specified properties. 
+	 * For instance, you can use the following environment properties: Context.AUTHORITATIVE, Context.PROVIDER_URL etc.
+	 * 
+	 * @param environment used to create the initial DirContext
+	 */
+	public DnsService(Properties environment) {
+		this.environment = environment;
+	}
 
 	/***
+ 	 * Constructs a DnsService with the specified parameters 
+ 	 * 
 	 * @param dnsProviders Specifies the host name and port of the DNS server(s), e.g.: 8.8.8.8:53 
 	 * @param timeout Specifies the number of milliseconds to use as the initial timeout period using the exponential backoff algorithm. If this property has not been set, the default initial timeout is 1000 milliseconds.
 	 * @param retries Specifies the number of times to retry each server using the exponential backoff algorithm. If this property has not been set, the default number of retries is 4.
@@ -48,11 +60,13 @@ public class DnsService {
 	}
 	
 	/***
-	 * @param dnsProviders Specifies the host name and port of the DNS server, e.g.: 8.8.8.8:53 
-	 * @param timeout Specifies the number of milliseconds to use as the initial timeout period using the exponential backoff algorithm. If this property has not been set, the default initial timeout is 1000 milliseconds.
-	 * @param retries Specifies the number of times to retry each server using the exponential backoff algorithm. If this property has not been set, the default number of retries is 4.
-	 * @param authoritative  If its value is "true", only authoritative responses are accepted from DNS servers; otherwise, all responses are accepted.
-	 * @param recursion This property is used to specify that recursion is allowed on DNS queries. 
+ 	 * Constructs a DnsService with the specified parameters. 
+ 	 * 
+	 * @param dnsProvider the host name and port of the DNS server, e.g.: 8.8.8.8:53 
+	 * @param timeout the number of milliseconds to use as the initial timeout period using the exponential backoff algorithm. If this property has not been set, the default initial timeout is 1000 milliseconds.
+	 * @param retries the number of times to retry each server using the exponential backoff algorithm. If this property has not been set, the default number of retries is 4.
+	 * @param authoritative  if true only authoritative responses are accepted from DNS servers; otherwise, all responses are accepted.
+	 * @param recursion if true recursion is allowed on DNS queries. 
 	 */
 	public DnsService(String dnsProvider, Long timeout, Long retries, Boolean authoritative, Boolean recursion) {
 		this.dnsProviders = dnsProviders != null ? new String[] { dnsProvider } : null;
@@ -62,7 +76,9 @@ public class DnsService {
 	}
 
 	/**
-	 * @param dnsProvider Specifies the host name and port of the DNS server, e.g.: 8.8.8.8:53
+ 	 * Constructs a DnsService with the specified provider.
+ 	 *  
+	 * @param dnsProvider is the host name and port of the DNS server, e.g.: 8.8.8.8:53
 	 */
 	public DnsService(String dnsProvider) {
 		dnsProviders = dnsProviders != null ? new String[] { dnsProvider } : null;
@@ -80,6 +96,14 @@ public class DnsService {
 		}
 	}
 	
+	/**
+	 * Returns a newly InitialDirContext every time, since JNDI specifies 
+	 * that concurrent access to the same Context instance is not 
+	 * guaranteed to be thread-safe
+	 * 
+	 * @return {@link InitialDirContext}
+	 * @throws NamingException if a naming exception is encountered
+	 */
 	private InitialDirContext getInitialDirContext() throws NamingException {
 		try {
 			if (this.environment != null) {
@@ -110,22 +134,25 @@ public class DnsService {
 	}
 	
 	/**
-	 * Do a resource lookup of the specified type
+	 * Do a resource lookup of the specified type(s)
+	 * 
 	 * @param domain the name of the resource record that is to be looked up
 	 * @param type indicates what type of query is required — ANY, A, NS, MX, SPF, SRV, TXT or CNAME
 	 * @return {@link List} of {@link DnsEntry}
-	 * @throws NamingException
+	 * @throws NamingException if a naming exception is encountered
 	 */
+	
 	public List<DnsEntry> lookup(String domain, Type... type) throws NamingException {
 		return defaultLookup(getInitialDirContext(), domain, type);
 	}
 	
 	/**
 	 * Check if the IP address is blacklisted by any of the lists
+	 * 
 	 * @param ipAddress the ipAddress to be looked up
 	 * @param lists DNSBL lists, e.g. bl.spamcop.net, dnsbl.sorbs.net
 	 * @return {@link List} of {@link DnsEntry}
-	 * @throws NamingException
+	 * @throws NamingException if a naming exception is encountered
 	 */
 	public List<DnsEntry> blacklistLookup(String ipAddress, List<String> lists) throws NamingException {
 		return blacklistLookup(ipAddress, lists.toArray(new String[lists.size()]));
@@ -133,10 +160,11 @@ public class DnsService {
 	
 	/**
 	 * Check if the IP address is blacklisted by any of the lists
+	 * 
 	 * @param ipAddress the ipAddress which to be looked up
 	 * @param lists DNSBL lists, e.g. bl.spamcop.net, dnsbl.sorbs.net
 	 * @return {@link List} of {@link DnsEntry}
-	 * @throws NamingException
+	 * @throws NamingException if a naming exception is encountered
 	 */
 	public List<DnsEntry> blacklistLookup(String ipAddress, String ... lists) throws NamingException {
 		List<DnsEntry> entries = new ArrayList<DnsEntry>();

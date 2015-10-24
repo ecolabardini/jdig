@@ -44,6 +44,10 @@ public class DnsEntry {
 		this.name = name;
 	}
 
+	/**
+	 * Used by MX and SRV DNS entries
+	 * @return {@link Integer}
+	 */
 	public Integer getPriority() {
 		return priority;
 	}
@@ -52,6 +56,10 @@ public class DnsEntry {
 		this.priority = priority;
 	}
 
+	/**
+	 * Used by SRV DNS entries
+	 * @return {@link Integer}
+	 */
 	public Integer getWeight() {
 		return weight;
 	}
@@ -60,6 +68,10 @@ public class DnsEntry {
 		this.weight = weight;
 	}
 
+	/**
+	 * Used by SRV DNS entries
+	 * @return {@link Integer}
+	 */
 	public Integer getPort() {
 		return port;
 	}
