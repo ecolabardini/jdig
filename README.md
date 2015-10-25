@@ -89,3 +89,13 @@ List<DnsEntry> blacklistLookup = new DnsService().blacklistLookup("1.2.3.4", "dn
 To understand SORBS return codes, check [Using SORBS](http://www.sorbs.net/using.shtml).
 
 Note that each list has its own return codes so you should check their webpages.
+
+
+#### Contributing
+
+Please contact me if you have any ideas, suggestions or, even better, you want to collaborate on this project!
+
+
+#### License
+
+This library is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
