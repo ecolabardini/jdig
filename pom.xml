@@ -9,6 +9,40 @@
 
 	<name>jdig</name>
 	<url>https://github.com/ecolabardini/jdig</url>
+	<description>A simple Java library for DNS queries</description>
+	<inceptionYear>2015</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Eduardo Colabardini</name>
+            <email>eduardo.colabardini at gmail.com</email>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>GitHub Issue Tracking</system>
+        <url>https://github.com/ecolabardini/jdig/issues</url>
+    </issueManagement>
+
+    <scm>
+        <url>http://github.com/ecolabardini/jdig</url>
+        <connection>scm:git:git://github.com/ecolabardini/jdig.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/ecolabardini/jdig.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+      <snapshotRepository>
+        <id>ossrh</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+    </distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,6 +53,8 @@
 		<maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
+		<nexus.staging.maven.plugin>1.6.3</nexus.staging.maven.plugin>
 	</properties>
 
 	<dependencies>
@@ -87,11 +123,36 @@
 					<execution>
 						<id>attach-sources</id>
 						<goals>
-							<goal>jar</goal>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus.staging.maven.plugin}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven.gpg.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 </project>
