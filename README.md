@@ -13,6 +13,10 @@ It is built with:
 ### Current version
 
     0.0.1
+    
+### How to add to my project
+
+    http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1
 
 ### Suported DNS queries
 
