@@ -16,7 +16,7 @@ It is built with:
     
 ### How to add to my project
 
-    http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1
+ [http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1](http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1)
 
 ### Suported DNS queries
 
