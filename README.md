@@ -1,4 +1,4 @@
-# JDIG - A simple Java library for DNS queries
+# JDIG - Java library for DNS queries
 
 JDIG is a simple Java library that can be added to your project in order to provide an easy way to do DNS queries. 
 
