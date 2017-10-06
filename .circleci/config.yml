@@ -12,20 +12,10 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-          - v1-dependencies-
+      - run: mvn clean install cobertura:cobertura
 
-      - run: mvn dependency:go-offline
+      - run: bash <(curl -s https://codecov.io/bash)
 
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-        
-      # run tests!
-      - run: mvn integration-test
 
 
 
