@@ -1,8 +1,8 @@
 # JDIG - Java library for DNS queries
 
-JDIG is a simple Java library that can be added to your project in order to provide an easy way to do DNS queries. 
+JDIG is a Java library that can be added to your project in order to provide an easy way to do DNS queries. 
 
-It also support DNS-based Blackhole List (DNSBL) / Real-time Blackhole List (RBL) queries. [What is this?](https://en.wikipedia.org/wiki/DNSBL)
+It also supports DNS-based Blackhole List (DNSBL) / Real-time Blackhole List (RBL) queries. [What is this?](https://en.wikipedia.org/wiki/DNSBL)
 
 It is built with:
  - Java 7
@@ -14,7 +14,7 @@ It is built with:
 
     0.0.1
     
-### How to add to my project
+### How to add to your project
 
  [http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1](http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1)
 
@@ -80,7 +80,7 @@ List<DnsEntry> entries = new DnsService(environment).lookup("google.com", Type.M
 
 This queries are provided by the ``blackListLookup()`` method. Note that the DNSBL list is a mandatory argument. 
 
-For DNSBL lists, [click here](https://en.wikipedia.org/wiki/Comparison_of_DNS_blacklists).
+For DNSBL lists [click here](https://en.wikipedia.org/wiki/Comparison_of_DNS_blacklists).
 
 In the example below, we are checking if the IP address 1.2.3.4 is in the [SORBS](http://www.sorbs.net/) list. 
 
