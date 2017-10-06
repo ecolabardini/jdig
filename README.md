@@ -1,3 +1,7 @@
+[![CircleCI](https://circleci.com/gh/ecolabardini/jdig.svg?style=shield)](https://circleci.com/gh/ecolabardini/jdig)
+[![codecov](https://codecov.io/gh/ecolabardini/jdig/branch/master/graph/badge.svg)](https://codecov.io/gh/ecolabardini/jdig)
+
+
 # JDIG - Java library for DNS queries
 
 JDIG is a Java library that can be added to your project in order to provide an easy way to do DNS queries. 
