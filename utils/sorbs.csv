@@ -1,0 +1,27 @@
+dnsbl.sorbs.net;Aggregate zone (contains all the following DNS zones except spam.dnsbl.sorbs.net);2;3;4;5;6;7;8;9;10;11;12;13;14;15
+http.dnsbl.sorbs.net;List of Open HTTP Proxy Servers.;2
+socks.dnsbl.sorbs.net;List of Open SOCKS Proxy Servers.;3
+misc.dnsbl.sorbs.net;List of open Proxy Servers not listed in the SOCKS or HTTP lists.;4
+smtp.dnsbl.sorbs.net;List of Open SMTP relay servers.;5
+web.dnsbl.sorbs.net;List of web (WWW) servers which have spammer abusable vulnerabilities (e.g. FormMail scripts) Note: This zone now includes non-webserver IP addresses that have abusable vulnerabilities.;7
+new.spam.dnsbl.sorbs.net;List of hosts that have been noted as sending spam/UCE/UBE to the admins of SORBS within the last 48 hours.;6
+recent.spam.dnsbl.sorbs.net;List of hosts that have been noted as sending spam/UCE/UBE to the admins of SORBS within the last 28 days (includes new.spam.dnsbl.sorbs.net).;6
+old.spam.dnsbl.sorbs.net;List of hosts that have been noted as sending spam/UCE/UBE to the admins of SORBS within the last year. (includes recent.spam.dnsbl.sorbs.net).;6
+spam.dnsbl.sorbs.net;List of hosts that have been noted as sending spam/UCE/UBE to the admins of SORBS at any time; and not subsequently resolving the matter and/or requesting a delisting. (Includes both old.spam.dnsbl.sorbs.net and escalations.dnsbl.sorbs.net).;6
+escalations.dnsbl.sorbs.net;This zone contains netblocks of spam supporting service providers; including those who provide websites; DNS or drop boxes for a spammer.  Spam supporters are added on a 'third strike and you are out' basis; where the third spam will cause the supporter to be added to the list.;6
+block.dnsbl.sorbs.net;List of hosts demanding that they never be tested by SORBS.;8
+zombie.dnsbl.sorbs.net;List of networks hijacked from their original owners; some of which have already used for spamming.;9
+dul.dnsbl.sorbs.net;Dynamic IP Address ranges (NOT a Dial Up list!);10
+noserver.dnsbl.sorbs.net;IP addresses and Netblocks of where system administrators and ISPs owning the network have indicated that servers should not be present.;14
+virus.dnsbl.sorbs.net;Hosts that have delivered known viruses to the SORBS spamtrap servers in the last 7 days.  The zone has a high overlap with the spam.dnsbl.sorbs.net as viruses that are not instantly recognised initially listed as spam (polymorphic viruses tend to do this.);15
+rhsbl.sorbs.net;Aggregate zone (contains all RHS zones);11;12
+badconf.rhsbl.sorbs.net;List of domain names where the A or MX records point to bad address space.;11
+nomail.rhsbl.sorbs.net;List of domain names where the owners have indicated no email should ever originate from these domains.;12
+safe.dnsbl.sorbs.net;Includes http, socks, misc, smtp, new.spam, web, block, zombie, dul, noserver zones;2;5;6;7;8;9;10;14
+problems.dnsbl.sorbs.net;Includes http, socks, misc, smtp, new.spam, recent.spam, old.spam, escalations, web, block, zombie zones;2;5;6;7;8;9
+preempt.dnsbl.sorbs.net;Includes dul, noserver zones;10;14
+relays.dnsbl.sorbs.net;Includes http, socks, misc, smtp zones;2;3;4;5
+proxies.dnsbl.sorbs.net;Includes http, socks, misc zones;2;3;4
+l1.spews.dnsbl.sorbs.net;SPEWS Level one listings;2
+l2.spews.dnsbl.sorbs.net;SPEWS Level two listings;2
+spews.dnsbl.sorbs.net;ASPEWS Listings;2
