@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Enumeration of all services provided by SORBS. See
- * {@link http://www.sorbs.net/using.shtml} for more information.
+ * Enumeration of all services provided by SORBS. 
+ * @see <a href="http://www.sorbs.net/using.shtml">SORBS site</a>
  */
 public enum SorbsBlacklists {
 
@@ -233,11 +233,9 @@ public enum SorbsBlacklists {
     }
 
     /**
-     * Returns {@true} if
-     *
      * @param ips  one or more IP addresses returned on a lookup to the blacklist
      *             service
-     * @return     {@true} if the codes are found on any of the IP addresses
+     * @return     {@code true} if the codes are found on any of the IP addresses
      *             provided appears on the result codes defined by the
      *             blacklist.
      */
