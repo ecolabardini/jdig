@@ -93,4 +93,15 @@ public class DnsServiceTest {
 		assertTrue(blacklistLookup.size() > 1);
 	}
 
+	@Test
+	public void testBlacklistedLookupByArray() throws NamingException {
+		assertTrue(new DnsService().isBlacklisted("127.0.0.2", "bl.spamcop.net", "dnsbl.sorbs.net"));
+	}
+
+	@Test
+	public void testBlacklistedLookupByList() throws NamingException {
+		List<String> myDnsBLlists = Arrays.asList("bl.spamcop.net", "dnsbl.sorbs.net");
+		assertTrue(new DnsService().isBlacklisted("127.0.0.2", myDnsBLlists));
+	}
+
 }
