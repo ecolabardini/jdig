@@ -15,6 +15,7 @@ import javax.naming.directory.InitialDirContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jdig.model.Blacklist;
 import com.jdig.model.DnsEntry;
 import com.jdig.model.Type;
 import com.jdig.parser.DnsParser;
@@ -173,6 +174,38 @@ public class DnsService {
 			entries.addAll(defaultLookup(getInitialDirContext(), query, Type.any()));
 		}
 		return entries;
+	}
+
+	/**
+	 * Returns true if the IP address is blacklisted by any of the lists
+	 *
+	 * @param ipAddress the ipAddress to be looked up
+	 * @param lists DNSBL lists, e.g. bl.spamcop.net, dnsbl.sorbs.net
+	 * @return true if the IP address is blacklisted by any of the lists
+	 * @throws NamingException if a naming exception is encountered
+	 */
+	public boolean isBlacklisted(String ipAddress, List<String> lists) throws NamingException {
+		return isBlacklisted(ipAddress, lists.toArray(new String[lists.size()]));
+	}
+
+	/**
+	 * Returns true if the IP address is blacklisted by any of the lists
+	 *
+	 * @param ipAddress the ipAddress which to be looked up
+	 * @param lists DNSBL lists, e.g. bl.spamcop.net, dnsbl.sorbs.net
+	 * @return true if the IP address is blacklisted by any of the lists
+	 * @throws NamingException if a naming exception is encountered
+	 */
+	public boolean isBlacklisted(String ipAddress, String ... lists) throws NamingException {
+		if (lists != null) {
+			for (String list : lists) {
+				List<DnsEntry> entries = blacklistLookup(ipAddress, list);
+				if (Blacklist.isBlacklisted(list, entries)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
