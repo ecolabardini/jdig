@@ -16,11 +16,11 @@ It is built with:
 
 ### Current version
 
-    0.0.1
+    0.0.2
     
 ### How to add to your project
 
- [http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1](http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.1)
+ [http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.2](http://mvnrepository.com/artifact/com.github.ecolabardini/jdig/0.0.2)
 
 ### Suported DNS queries
 
