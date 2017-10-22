@@ -99,11 +99,11 @@ To understand SORBS return codes, check [Using SORBS](http://www.sorbs.net/using
 Note that each list has its own return codes so you should check their webpages.
 
 
-#### Contributing
+### Contributing
 
 Please contact me if you have any ideas, suggestions or, even better, you want to collaborate on this project!
 
 
-#### License
+### License
 
 This library is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
