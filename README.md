@@ -82,9 +82,9 @@ List<DnsEntry> entries = new DnsService(environment).lookup("google.com", Type.M
     
 #### Example - DNSBL query
 
-This queries are provided by the ``blackListLookup()`` method. Note that the DNSBL list is a mandatory argument. 
+These queries are provided by the ``blackListLookup()`` method. Note that the DNS blacklist is a mandatory argument. 
 
-For DNSBL lists [click here](https://en.wikipedia.org/wiki/Comparison_of_DNS_blacklists).
+For DNS blacklists [click here](https://en.wikipedia.org/wiki/Comparison_of_DNS_blacklists).
 
 In the example below, we are checking if the IP address 1.2.3.4 is in the [SORBS](http://www.sorbs.net/) list. 
 
